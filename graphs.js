@@ -93,7 +93,7 @@ module.exports =  class Graph {
 
     degreeList(){
       return this.nodes().map((n) => {
-        return { node: n, degree : this.graph[a].length}
+        return { node: n, degree : this.graph[n].length}
       });
     }
 
