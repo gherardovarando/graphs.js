@@ -27,19 +27,22 @@ module.exports =  class Graph {
 
     addNodeUnsafe(a){
         this.graph[a]=[];
+        return this;
     }
 
     addNode(a){
-        if (this.hasNode(a)){ return; }
+        if (this.hasNode(a)){ return this; }
         this.graph[a] = [];
+        return this;
     }
 
     removeNode(a){
-        if (!this.hasNode(a)){ return ; }
+        if (!this.hasNode(a)){ return this; }
         this.graph[a].map((n) => {
             this.graph[n].splice(this.graph[n].indexOf(a), 1);
         });
         delete this.graph[a]; 
+        return this;
     }
 
     hasEdge(a,b){
@@ -49,24 +52,27 @@ module.exports =  class Graph {
     addEdgeUnsafe(a,b){
         this.graph[a].push(b);
         this.graph[b].push(a);
+        return this;
     }
 
     addEdge(a,b) {
-        if (!this.hasNode(a)){ this.addNode(a); }
-        if (!this.hasNode(b)){ this.addNode(b); }
-        if (this.hasEdge(a,b)){ return }  
+        this.addNode(a).addNode(b);
+        if (this.hasEdge(a,b)){ return this; }  
         this.graph[a].push(b);
         this.graph[b].push(a);
+        return this;
     }
 
 
     removeEdge(a,b){
         // to do 
+        return this;
     }
 
 
     toString(){
         // to do 
+        return this;
     }
 
 
