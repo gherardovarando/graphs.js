@@ -91,6 +91,12 @@ module.exports =  class Graph {
         }
     }
 
+    degreeList(){
+      return this.nodes().map((n) => {
+        return { node: n, degree : this.graph[a].length}
+      });
+    }
+
 
     static random(n, d) {
         let g = new Graph([0]);
