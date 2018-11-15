@@ -6,7 +6,7 @@ module.exports =  class Graph {
         });
         if (!Array.isArray(edges)){ return;}
         edges.map( (edg) => {
-            this.addEdge(edg) 
+            this.addEdge(edg[0], edg[1]) 
         });
 
     }
@@ -16,12 +16,12 @@ module.exports =  class Graph {
     }
 
     edges(){
-        //to do 
+        //to do
     }
 
 
     hasNode(a){
-        return (Array.isArray(this.graph[a])) ; 
+        return (Array.isArray(this.graph[a])) ;
     }
 
 
@@ -41,12 +41,12 @@ module.exports =  class Graph {
         this.graph[a].map((n) => {
             this.graph[n].splice(this.graph[n].indexOf(a), 1);
         });
-        delete this.graph[a]; 
+        delete this.graph[a];
         return this;
     }
 
     hasEdge(a,b){
-        return this.graph[a].includes(b);  
+        return this.graph[a].includes(b);
     }
 
     addEdgeUnsafe(a,b){
@@ -57,7 +57,7 @@ module.exports =  class Graph {
 
     addEdge(a,b) {
         this.addNode(a).addNode(b);
-        if (this.hasEdge(a,b)){ return this; }  
+        if (this.hasEdge(a,b)){ return this; }
         this.graph[a].push(b);
         this.graph[b].push(a);
         return this;
@@ -65,13 +65,13 @@ module.exports =  class Graph {
 
 
     removeEdge(a,b){
-        // to do 
+        // to do
         return this;
     }
 
 
     toString(){
-        // to do 
+        // to do
         return this;
     }
 
@@ -81,7 +81,7 @@ module.exports =  class Graph {
             a = this.nodes()
         }
         if (Array.isArray(a)){
-            return  a.map((nod)=>{ 
+            return  a.map((nod)=>{
                 return this.graph[nod].length;
             })
         }else if (this.hasNode(a)){
