@@ -6,7 +6,7 @@ module.exports =  class Graph {
         });
         if (!Array.isArray(edges)){ return;}
         edges.map( (edg) => {
-            this.addEdge(edg[0], edg[1]) 
+            this.addEdge(edg[0], edg[1])
         });
 
     }
@@ -15,8 +15,9 @@ module.exports =  class Graph {
         return Object.keys(this.graph);
     }
 
-    edges(){
-        //to do
+    neighbours(a){
+        if (!this.hasNode(a)) return;
+        return this.graph[a]
     }
 
 
