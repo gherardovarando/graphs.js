@@ -47,7 +47,13 @@ module.exports =  class Graph {
     }
 
     hasEdge(a,b){
+        if (!this.hasNode(a)) return false;
+        if (!this.hasNode(b)) return false;
         return this.graph[a].includes(b);
+    }
+
+    hasEdgeUnsafe(a,b){
+      return this.graph[a].includes(b);
     }
 
     addEdgeUnsafe(a,b){
@@ -66,7 +72,9 @@ module.exports =  class Graph {
 
 
     removeEdge(a,b){
-        // to do
+        if (!this.hasEdge(a, b)) return this;
+        this.graph[a].splice(this.graph[a].indexOf(b),1);
+        this.graph[b].splice(this.graph[b].indexOf(a),1);
         return this;
     }
 
@@ -74,6 +82,11 @@ module.exports =  class Graph {
     toString(){
         // to do
         return this;
+    }
+
+    toGraphJSON(){
+       //to do
+
     }
 
 
@@ -109,5 +122,11 @@ module.exports =  class Graph {
         }
         return g;
     }
+
+    static fromGraphJSON(){
+      //to do
+    }
+
+
 
 }

@@ -27,4 +27,6 @@ g.removeNode('a')
 g.removeEdge('b','c')
 
 g.degreeList()
+
+Graph.random(10, 0.5)
 ```

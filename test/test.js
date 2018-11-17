@@ -63,4 +63,39 @@ describe('Graph', function() {
        assert.deepEqual(g.removeNode('a').graph['c'], ['b']);
     });
   }); //end removeNode
+
+
+  describe('#nodes()', function() {
+    it('should return the nodes vector', function() {
+      assert.deepEqual((new Graph(['a', 'b', 'c'])).nodes(), ['a', 'b', 'c']);
+      assert.deepEqual((new Graph([1,2,3,4,5,6])).nodes(), [1,2,3,4,5,6]);
+      assert.deepEqual((new Graph([])).nodes(),[]);
+    });
+  }); //ens nodes
+
+  describe('#hasEdge()', function() {
+    it('should return TRUE if edge is present', function() {
+      assert.equal((new Graph(['a', 'b'], [['a', 'b']])).hasEdge('a', 'b'), true);
+      assert.equal((new Graph(['a', 'b'], [['a', 'b']])).hasEdge('b', 'a'), true);
+      assert.equal((new Graph([1, 2], [[1, 2]])).hasEdge(1, 2), true);
+    });
+
+    it('should return FALSE if edge is  not present', function() {
+      assert.equal((new Graph(['a', 'b'])).hasEdge('a', 'b'), false);
+      assert.equal((new Graph(['a', 'b', 'c'], [['a', 'c']])).hasEdge('b', 'a'), false);
+      assert.equal((new Graph([1, 2, 3], [[1, 2]])).hasEdge(3, 2), false);
+    });
+  });// end hasEdge
+
+  describe('#addEdge()', function() {
+     it('should add edge', function(){
+       assert.equal((new Graph(['a', 'b'])).addEdge('a', 'b').hasEdge('a', 'b'), true)
+       assert.equal((new Graph([1, 0])).addEdge(0, 1).hasEdge(1, 0), true)
+     })
+
+     it('should not add edge if already present', function(){
+       assert.deepEqual((new Graph(['a', 'b'], [['a', 'b']])).addEdge('a', 'b').graph['a'], ['b'])
+
+     })
+  });
 });
